@@ -10,7 +10,7 @@
 # =============================================================================
 cask "limpet" do
   version "1.0.0"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "c38cf9c7da494f98006a1e28b7ff36d2c1cefddab4495d212e7cb6034b8b9b57"
 
   url "https://github.com/georgeolaru/limpet/releases/download/v#{version}/Limpet-macos-universal-#{version}.zip",
       verified: "github.com/georgeolaru/limpet/"
