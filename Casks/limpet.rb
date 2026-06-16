@@ -1,18 +1,12 @@
 # =============================================================================
-# TEMPLATE — NOT YET USABLE.
+# Pending its first SIGNED release. The version/sha256 below are placeholders.
 #
-# Modeled on steipete/homebrew-tap Casks/codexbar.rb. A Cask distributes the
-# prebuilt menu-bar .app, but Homebrew requires casks to be code-signed AND
-# notarized (the audit removes non-notarized casks by Sept 2026). To enable
-# this you need:
-#   1. An Apple Developer ID ($99/yr).
-#   2. A signed + notarized, stapled Limpet.app zipped into a GitHub release,
-#      e.g. Limpet-macos-universal-<version>.zip  (see CodexBar's
-#      Scripts/sign-and-notarize.sh for the pattern).
-#   3. The real version + sha256 filled in below.
-#
-# Until then, the menu-bar app installs via the repo's install.sh (it compiles
-# locally with swiftc, so Gatekeeper doesn't block a local build).
+# A Cask must point at a code-signed + notarized .app (Homebrew rejects casks
+# that fail Gatekeeper). Produce one with `release-app.sh` in the limpet repo:
+# it builds a universal Limpet.app, signs + notarizes + staples it, and emits
+# Limpet-macos-universal-<version>.zip. Attach that to the matching GitHub
+# release; the tap's auto-bump workflow then fills version + sha256 here.
+# Until a signed zip exists, this cask won't install — use install.sh meanwhile.
 # =============================================================================
 cask "limpet" do
   version "1.0.0"
