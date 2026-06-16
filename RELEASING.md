@@ -41,12 +41,25 @@ limpet --status
 Commit `Formula/limpet.rb` to `github.com/georgeolaru/homebrew-tap`. Users get
 the new version with `brew update && brew upgrade limpet`.
 
-## Bumping later versions
+## Bumping later versions (automated)
 
-Repeat 1–2 with the new tag, update `version` + `sha256`, push. To automate it,
-mirror CodexBar's `.github/workflows/update-formula.yml` +
-`.github/scripts/update_formula.py`, which rewrite the formula's `version`/`sha256`
-from a release event.
+After you cut a new `vX.Y.Z` release on `georgeolaru/limpet`, the formula updates
+itself — you don't touch `version`/`sha256` by hand:
+
+- **`.github/workflows/update-formula.yml`** runs `.github/scripts/update_formula.py`,
+  which reads the release tag, computes the source-tarball `sha256`, rewrites
+  `Formula/limpet.rb`, and commits. It's a no-op when already current.
+- **Triggers:** a daily `schedule` (auto, ≤24 h lag) and manual
+  `workflow_dispatch` (Actions tab → *Update Limpet formula* → optionally pin a
+  tag) for an instant bump.
+- **No secrets to configure:** it reads Limpet's public releases and writes to
+  this tap with the built-in `GITHUB_TOKEN`.
+
+To make it instant on every release, have the limpet release workflow call
+`gh workflow run update-formula.yml -R georgeolaru/homebrew-tap` (needs a PAT).
+
+Manual fallback (if you ever bypass the workflow): bump `version` + `sha256` in
+`Formula/limpet.rb` per steps 1–2 above and push.
 
 ## TODO before the first real release
 
