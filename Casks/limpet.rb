@@ -1,12 +1,9 @@
 # =============================================================================
-# Pending its first SIGNED release. The version/sha256 below are placeholders.
-#
-# A Cask must point at a code-signed + notarized .app (Homebrew rejects casks
-# that fail Gatekeeper). Produce one with `release-app.sh` in the limpet repo:
-# it builds a universal Limpet.app, signs + notarizes + staples it, and emits
-# Limpet-macos-universal-<version>.zip. Attach that to the matching GitHub
-# release; the tap's auto-bump workflow then fills version + sha256 here.
-# Until a signed zip exists, this cask won't install — use install.sh meanwhile.
+# The menu-bar app — code-signed + notarized for distribution outside the Mac
+# App Store. Built by `release-app.sh` in the limpet repo (universal build →
+# sign → notarize → staple → zip). On each signed release, attach the
+# Limpet-macos-universal-<version>.zip asset; the tap's auto-bump workflow then
+# updates the version + sha256 below.
 # =============================================================================
 cask "limpet" do
   version "1.0.0"
